@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сурхо Курумов](https://up.htmlacademy.ru/javascript/9/user/227974).
-* Наставник: `Неизвестно`.
+* Наставник: [Екатерина Кащенко](https://github.com/Ekaterina-Kaschenko).
 
 ---
 
