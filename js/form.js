@@ -5,7 +5,7 @@
   var uploadCancel = uploadOverlay.querySelector('.upload-form-cancel');
 
   function onUploadEscPress(evt) {
-    if (evt.keyCode === 27){
+    if (evt.keyCode === 27) {
       hideUploadOverlay();
     }
   }

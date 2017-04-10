@@ -10,7 +10,7 @@ window.photoElement = (function () {
     return photoTemplate;
   }
 
-  function generetePhotoElement() {      
+  function generetePhotoElement() {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < data.photosObject.length; i++) {
       fragment.appendChild(generetePhotosTemplate(data.photosObject[i]));

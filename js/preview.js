@@ -37,6 +37,3 @@ window.preview = (function () {
     closePopup: closePopup
   };
 })();
-
-
-
