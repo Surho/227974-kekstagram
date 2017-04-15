@@ -1,5 +1,6 @@
 'use strict';
-window['initializeFilters'] =  (function() {
+var initializeFilters = window.initializeFilters; 
+initializeFilters = (function() {
   
     var uploadPreview = document.querySelector('.upload-form-preview');
     var filterScroller = document.querySelector('.upload-filter-level');
