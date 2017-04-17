@@ -22,10 +22,10 @@ window.preview = (function () {
     document.removeEventListener('keydown', onPopupEscPress);
   }
 
-  function genereteGalleryOverlay(url, likes) {
+  function genereteGalleryOverlay(url, likes, comments) {
     galleryOverlay.querySelector('.gallery-overlay-image').src = url;
     galleryOverlay.querySelector('.likes-count').textContent = likes;
-    galleryOverlay.querySelector('.comments-count').textContent = data.genereteNumber(0, 25);
+    galleryOverlay.querySelector('.comments-count').textContent = comments;
   }
 
   return {
