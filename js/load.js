@@ -38,4 +38,4 @@ window.load = function (url, onLoad, onError) {
   xhr.timeout = 10000;
   xhr.open('GET', url);
   xhr.send();
-}
+};

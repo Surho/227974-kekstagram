@@ -23,10 +23,10 @@ window.initializeScale = function (scaleElement, adjustScale) {
       }
     }
     if (bigger) {
-      resizeBigger()
+      resizeBigger();
     } else {
-      resizeSmaller(); 
-    } 
+      resizeSmaller();
+    }
   }
 
   scaleElement.addEventListener('click', function (evt) {
