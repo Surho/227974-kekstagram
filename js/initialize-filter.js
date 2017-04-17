@@ -1,5 +1,5 @@
 'use strict';
-window.initializeFilters =  (function() {
+window.initializeFilters = (function () {
 
   var uploadPreview = document.querySelector('.upload-form-preview');
   var filterScroller = document.querySelector('.upload-filter-level');
@@ -10,31 +10,31 @@ window.initializeFilters =  (function() {
   function activate(filterName, applyFilter) {
     var filtersInfo = {
       chrome: {
-        scale: 1/450,
+        scale: 1 / 450,
         cssValue: 'grayscale',
         division: ''
       },
       sepia: {
-        scale: 1/450,
+        scale: 1 / 450,
         cssValue: 'sepia',
         division: ''
       },
       marvin: {
-        scale: 100/450,
+        scale: 100 / 450,
         cssValue: 'invert',
         division: '%'
       },
       phobos: {
-        scale: 3/450,
+        scale: 3 / 450,
         cssValue: 'blur',
         division: 'px'
       },
       heat: {
-        scale: 3/450,
+        scale: 3 / 450,
         cssValue: 'brightness',
         division: ''
       }
-    }
+    };
 
     var filterObject = filtersInfo[filterName];
     initializeFilters.activeFilter = filterName;
@@ -52,11 +52,11 @@ window.initializeFilters =  (function() {
   function resetAllSettings() {
     var resizeValue = document.querySelector('.upload-resize-controls-value');
     initializeFilters.filterHandler.style.left = 90 + 'px';
-    initializeFilters.filterLineVal.style.width = 20 +'%';
+    initializeFilters.filterLineVal.style.width = 20 + '%';
     resizeValue.setAttribute('value', 100 + '%');
     uploadPreview.style.transform = 'scale(' + 1 + ')';
     uploadPreview.style = '';
-  };
+  }
 
   return {
     activateFilter: activate,

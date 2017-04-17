@@ -115,7 +115,7 @@
       highlightErrorForm();
     }
   });
-  
+
   initializeFilters.filterHandler.addEventListener('mousedown', function (evt) {
     var filterHandler = initializeFilters.filterHandler;
     evt.preventDefault();
@@ -132,12 +132,12 @@
         x: startCords.x - moveEvt.clientX,
         y: startCords.y - moveEvt.clientY
       };
-      
+
       startCords = {
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
-  
+
       if (filterHandler.offsetLeft <= 0) {
         filterHandler.style.left = filterHandler.offsetLeft + 1 + 'px';
         return;
@@ -150,13 +150,13 @@
       initializeFilters.filterHandler.style.left = (filterHandler.offsetLeft - shift.x) + 'px';
       initializeFilters.filterLineVal.style.width = (filterHandler.offsetLeft * (100 / 450)) + '%';
       initializeFilters.activateFilter(initializeFilters.activeFilter, applyFilter);
-      }
-  
+    }
+
     function mouseUp(upEvt) {
       upEvt.preventDefault();
       document.removeEventListener('mousemove', mouseMove);
       document.removeEventListener('mouseup', mouseUp);
-    } 
+    }
     document.addEventListener('mousemove', mouseMove);
     document.addEventListener('mouseup', mouseUp);
   });
