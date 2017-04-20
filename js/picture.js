@@ -10,13 +10,69 @@ window.photoElement = (function () {
     return photoTemplate;
   }
 
-  function onLoad(item) {
+  function renderPhotos(data) {
     var picturesList = document.querySelector('.pictures');
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < item.length; i++) {
-      fragment.appendChild(generetePhotosTemplate(item[i]));
+    picturesList.innerHTML = '';
+    for (var i = 0; i < data.length; i++) {
+      fragment.appendChild(generetePhotosTemplate(data[i]));
     }
     picturesList.appendChild(fragment);
+  }
+
+  var photos = [];
+
+  function compare(a, b) {
+    var diff = b.comments.length - a.comments.length;
+    if (diff === 0) {
+      diff = b.likes - a.likes;
+    }
+    return diff
+  }
+
+  function chaosSorting(a, b) {
+    return Math.random() - 0.5;
+  }
+
+  function getRandomElements() {
+    var randomTen = photos.slice().sort(chaosSorting).slice(0, 10);
+    return randomTen;
+  }
+  
+  function updateDiscussed() {
+    var mostDiscussed = photos.slice();
+    renderPhotos(mostDiscussed.sort(compare));
+  }
+
+  function updatePopular() {
+    renderPhotos(photos);
+  }
+
+  function updateNew() {
+    renderPhotos(getRandomElements());
+  }
+  
+  var filters = document.querySelector('.filters');
+
+  filters.addEventListener('click', function(evt) {
+    var target = evt.target;
+    switch(target.id) {
+      case 'filter-discussed':
+        debounce(updateDiscussed)
+        break;
+      case 'filter-popular':
+        debounce(updatePopular)
+        break;
+      case 'filter-new':
+        debounce(updateNew)
+        break;
+    }
+  });
+
+  function onLoad(pictures) {
+    photos = pictures;
+    filters.classList.remove('hidden');
+    renderPhotos(pictures);
   }
 
   function onError(error) {
