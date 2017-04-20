@@ -18,7 +18,7 @@ window.data = (function () {
   }
 
   function generetePhotosObject() {
-    var userPhotosObject = [];  
+    var userPhotosObject = [];
     for (var i = 0; i < 25; i++) {
       userPhotosObject[i] = {
         url: generetePhotoUrl(i),
