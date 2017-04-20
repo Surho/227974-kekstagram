@@ -1,5 +1,5 @@
 'use strict';
-window.initializeScale = function(scaleElement, adjustScale) {
+window.initializeScale = function (scaleElement, adjustScale) {
 
   var resizeControls = scaleElement;
   var resizeDec = resizeControls.querySelector('.upload-resize-controls-button-dec');
@@ -22,18 +22,22 @@ window.initializeScale = function(scaleElement, adjustScale) {
         resizeValue.setAttribute('value', currentValue + '%');
       }
     }
-    (bigger) ? resizeBigger() : resizeSmaller();
+    if (bigger) {
+      resizeBigger();
+    } else {
+      resizeSmaller();
+    }
   }
 
   scaleElement.addEventListener('click', function (evt) {
-      evt.preventDefault();
-      var target = evt.target;
-      if (evt.target === resizeDec) {
-         resize(25, 100); 
-      }
-      if (evt.target === resizeInc) {
-         resize(25, 100, true);
-      }
-      target=target.parentNode;
-  })
-}
+    evt.preventDefault();
+    var target = evt.target;
+    if (target === resizeDec) {
+      resize(25, 100);
+    }
+    if (target === resizeInc) {
+      resize(25, 100, true);
+    }
+    target = target.parentNode;
+  });
+};

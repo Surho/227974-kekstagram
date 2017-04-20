@@ -1,13 +1,5 @@
 'use strict';
 ;(function () {
-
-  function createPhotosFlow() {
-    var picturesList = document.querySelector('.pictures');
-    picturesList.appendChild(photoElement);
-  }
-
-  createPhotosFlow();
-
   var pictures = preview.pictures;
 
   pictures.addEventListener('click', function (evt) {
@@ -17,7 +9,8 @@
       if (target.tagName === 'A') {
         var likes = target.querySelector('.picture-likes').textContent;
         var url = target.querySelector('img').getAttribute('src');
-        preview.genereteGalleryOverlay(url, likes);
+        var comments = target.querySelector('.picture-comments').textContent;
+        preview.genereteGalleryOverlay(url, likes, comments);
         preview.openPopup();
       }
       target = target.parentNode;
@@ -34,4 +27,3 @@
     }
   });
 })();
-
