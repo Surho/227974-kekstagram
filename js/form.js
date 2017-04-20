@@ -7,12 +7,14 @@
   function onUploadEscPress(evt) {
     if (evt.keyCode === 27) {
       hideUploadOverlay();
+      showUploadForm();
     }
   }
 
   function onUploadEnterPress(evt) {
     if (evt.keyCode === 13) {
       hideUploadOverlay();
+      showUploadForm();
     }
   }
 
@@ -42,11 +44,13 @@
   uploadForm.addEventListener('click', function (evt) {
     evt.preventDefault();
     showUploadOverlay();
+    hideUplaodForm();
   });
 
   uploadCancel.addEventListener('click', function (evt) {
     evt.preventDefault();
     hideUploadOverlay();
+    showUploadForm();
   });
 
   document.querySelector('.upload-form-description').addEventListener('keydown', function (evt) {
