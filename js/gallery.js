@@ -1,5 +1,6 @@
 'use strict';
-;(function () {
+(function () {
+  var preview = window.preview;
   var pictures = preview.pictures;
 
   pictures.addEventListener('click', function (evt) {

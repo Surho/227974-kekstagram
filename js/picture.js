@@ -21,13 +21,14 @@ window.photoElement = (function () {
   }
 
   var photos = [];
+  var debounce = window.debounce;
 
   function compare(a, b) {
     var diff = b.comments.length - a.comments.length;
     if (diff === 0) {
       diff = b.likes - a.likes;
     }
-    return diff
+    return diff;
   }
 
   function chaosSorting(a, b) {
@@ -38,7 +39,7 @@ window.photoElement = (function () {
     var randomTen = photos.slice().sort(chaosSorting).slice(0, 10);
     return randomTen;
   }
-  
+
   function updateDiscussed() {
     var mostDiscussed = photos.slice();
     renderPhotos(mostDiscussed.sort(compare));
@@ -51,20 +52,20 @@ window.photoElement = (function () {
   function updateNew() {
     renderPhotos(getRandomElements());
   }
-  
+
   var filters = document.querySelector('.filters');
 
-  filters.addEventListener('click', function(evt) {
+  filters.addEventListener('click', function (evt) {
     var target = evt.target;
-    switch(target.id) {
+    switch (target.id) {
       case 'filter-discussed':
-        debounce(updateDiscussed)
+        debounce(updateDiscussed);
         break;
       case 'filter-popular':
-        debounce(updatePopular)
+        debounce(updatePopular);
         break;
       case 'filter-new':
-        debounce(updateNew)
+        debounce(updateNew);
         break;
     }
   });

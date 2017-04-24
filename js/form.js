@@ -1,8 +1,11 @@
 'use strict';
-;(function () {
+(function () {
   var uploadForm = document.querySelector('.upload-form');
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadCancel = uploadOverlay.querySelector('.upload-form-cancel');
+  var uploadPreview = document.querySelector('.upload-form-preview');
+  var initializeFilters = window.initializeFilters;
+  var initializeScale = window.initializeScale;
 
   function onUploadEscPress(evt) {
     if (evt.keyCode === 27) {
@@ -42,7 +45,6 @@
   hideUploadOverlay();
 
   uploadForm.addEventListener('click', function (evt) {
-    evt.preventDefault();
     showUploadOverlay();
     hideUplaodForm();
   });
@@ -60,7 +62,6 @@
   });
 
   var uploadFilterControls = document.querySelector('.upload-filter-controls');
-  var uploadPreview = document.querySelector('.upload-form-preview');
 
   initializeFilters.hideScroller();
 
@@ -74,12 +75,14 @@
     while (target !== uploadFilterControls) {
       if (target.value === 'none') {
         uploadPreview.style = '';
+        initializeFilters.setActiveFilter(target.value);
         initializeFilters.hideScroller();
         initializeFilters.resetAllSettings();
       } else if (target.value) {
+        initializeFilters.setActiveFilter(target.value);
         initializeFilters.showScroller();
         initializeFilters.resetAllSettings();
-        initializeFilters.activateFilter(target.value, applyFilter);
+        initializeFilters.activateFilter(applyFilter);
       }
       target = target.parentNode;
     }
@@ -153,7 +156,7 @@
 
       initializeFilters.filterHandler.style.left = (filterHandler.offsetLeft - shift.x) + 'px';
       initializeFilters.filterLineVal.style.width = (filterHandler.offsetLeft * (100 / 450)) + '%';
-      initializeFilters.activateFilter(initializeFilters.activeFilter, applyFilter);
+      initializeFilters.activateFilter(applyFilter);
     }
 
     function mouseUp(upEvt) {

@@ -6,8 +6,17 @@ window.initializeFilters = (function () {
   var filterHandler = document.querySelector('.upload-filter-level-pin');
   var filterLineVal = document.querySelector('.upload-filter-level-val');
   var filterLine = document.querySelector('.upload-filter-level-line');
+  var activeFilter;
 
-  function activate(filterName, applyFilter) {
+  function setActiveFilter(name) {
+    if (activeFilter) {
+      activeFilter = '';
+    }
+    activeFilter = name;
+    return activeFilter;
+  }
+
+  function activate(applyFilter) {
     var filtersInfo = {
       chrome: {
         scale: 1 / 450,
@@ -36,8 +45,7 @@ window.initializeFilters = (function () {
       }
     };
 
-    var filterObject = filtersInfo[filterName];
-    initializeFilters.activeFilter = filterName;
+    var filterObject = filtersInfo[activeFilter];
     applyFilter(filterObject);
   }
 
@@ -51,11 +59,11 @@ window.initializeFilters = (function () {
 
   function resetAllSettings() {
     var resizeValue = document.querySelector('.upload-resize-controls-value');
-    initializeFilters.filterHandler.style.left = 90 + 'px';
-    initializeFilters.filterLineVal.style.width = 20 + '%';
+    filterHandler.style.left = 90 + 'px';
+    filterLineVal.style.width = 20 + '%';
     resizeValue.setAttribute('value', 100 + '%');
     uploadPreview.style.transform = 'scale(' + 1 + ')';
-    uploadPreview.style = '';
+    uploadPreview.style.cssText = '';
   }
 
   return {
@@ -66,6 +74,7 @@ window.initializeFilters = (function () {
     filterScroller: filterScroller,
     filterHandler: filterHandler,
     filterLineVal: filterLineVal,
-    filterLine: filterLine
+    filterLine: filterLine,
+    setActiveFilter: setActiveFilter
   };
 })();
