@@ -1,5 +1,4 @@
 'use strict';
-
 window.preview = (function () {
 
   var pictures = document.querySelector('.pictures');
