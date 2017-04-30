@@ -10,11 +10,33 @@
     return photoTemplate;
   }
 
+  // function renderPhotos(data) {
+  //   var picturesList = document.querySelector('.pictures');
+  //   picturesList.innerHTML = '';
+  //   data.map(function (item) {
+  //     console.log(item);
+  //     picturesList.appendChild(generetePhotosTemplate(item));
+  //   });
+  // }
+
+  var preview = window.preview;
   function renderPhotos(data) {
     var picturesList = document.querySelector('.pictures');
     picturesList.innerHTML = '';
-    data.map(function (item) {
+    console.log(picturesList);
+    data.map(function (item, i) {
       picturesList.appendChild(generetePhotosTemplate(item));
+      console.log(generetePhotosTemplate(item));
+      // var galleryPhoto = picturesList.children[i];
+      var galleryPhoto = generetePhotosTemplate(item);
+      var url = item.url;
+      var likes = item.likes;
+      var comments = item.comments;
+      // item.addEventListener('click', function (evt) {
+      //   evt.preventDefault();
+      //   preview.genereteGalleryOverlay(url, likes, comments);
+      //   preview.openPopup();
+      // });
     });
   }
 
