@@ -1,5 +1,5 @@
 'use strict';
-window.photoElement = (function () {
+(function () {
 
   function generetePhotosTemplate(photo) {
     var templatePhoto = document.querySelector('#picture-template').content;
@@ -12,23 +12,17 @@ window.photoElement = (function () {
 
   function renderPhotos(data) {
     var picturesList = document.querySelector('.pictures');
-    var fragment = document.createDocumentFragment();
     picturesList.innerHTML = '';
-    for (var i = 0; i < data.length; i++) {
-      fragment.appendChild(generetePhotosTemplate(data[i]));
-    }
-    picturesList.appendChild(fragment);
+    data.map(function (item) {
+      picturesList.appendChild(generetePhotosTemplate(item));
+    });
   }
 
   var photos = [];
   var debounce = window.debounce;
 
   function compare(a, b) {
-    var diff = b.comments.length - a.comments.length;
-    if (diff === 0) {
-      diff = b.likes - a.likes;
-    }
-    return diff;
+    return b.comments.length - a.comments.length || b.likes - a.likes;
   }
 
   function chaosSorting(a, b) {

@@ -1,6 +1,7 @@
 'use strict';
 (function () {
   var uploadForm = document.querySelector('.upload-form');
+  var uploadFile = uploadForm.querySelector('#upload-file');
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadCancel = uploadOverlay.querySelector('.upload-form-cancel');
   var uploadPreview = document.querySelector('.upload-form-preview');
@@ -44,7 +45,7 @@
   showUploadForm();
   hideUploadOverlay();
 
-  uploadForm.addEventListener('click', function (evt) {
+  uploadFile.addEventListener('change', function (evt) {
     showUploadOverlay();
     hideUplaodForm();
   });
@@ -70,6 +71,7 @@
     uploadPreview.style.filter = filterObject.cssValue + '(' + (filterPinPosition * filterObject.scale) + filterObject.division + ')';
   }
 
+
   uploadFilterControls.addEventListener('click', function (evt) {
     var target = evt.target;
     while (target !== uploadFilterControls) {
@@ -78,7 +80,8 @@
         initializeFilters.setActiveFilter(target.value);
         initializeFilters.hideScroller();
         initializeFilters.resetAllSettings();
-      } else if (target.value) {
+      }
+      if (target.value) {
         initializeFilters.setActiveFilter(target.value);
         initializeFilters.showScroller();
         initializeFilters.resetAllSettings();
@@ -90,9 +93,9 @@
 
   var scaleElement = document.querySelector('.upload-resize-controls');
 
-  var adjustScale = function (currentValue) {
+  function adjustScale(currentValue) {
     uploadPreview.style.transform = 'scale(' + currentValue / 100 + ')';
-  };
+  }
   initializeScale(scaleElement, adjustScale);
 
   var submitButton = document.querySelector('.upload-form-submit');
@@ -108,9 +111,9 @@
     var myForm = uploadOverlay.querySelector('#upload-filter');
     var myFormTextarea = myForm.querySelector('.upload-form-description');
     myFormTextarea.style = 'outline-color: red';
-    myFormTextarea.onblur = function () {
+    myFormTextarea.addEventListener('blur', function (evt) {
       myFormTextarea.style = '';
-    };
+    });
   }
 
   submitButton.addEventListener('click', function (evt) {
@@ -132,7 +135,7 @@
       y: evt.clientY
     };
 
-    function mouseMove(moveEvt) {
+    function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
 
       var shift = {
@@ -159,12 +162,12 @@
       initializeFilters.activateFilter(applyFilter);
     }
 
-    function mouseUp(upEvt) {
+    function onMouseUp(upEvt) {
       upEvt.preventDefault();
-      document.removeEventListener('mousemove', mouseMove);
-      document.removeEventListener('mouseup', mouseUp);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
     }
-    document.addEventListener('mousemove', mouseMove);
-    document.addEventListener('mouseup', mouseUp);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   });
 })();

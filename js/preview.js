@@ -29,7 +29,6 @@ window.preview = (function () {
 
   return {
     pictures: pictures,
-    galleryOverlay: galleryOverlay,
     closeButton: closeButton,
     genereteGalleryOverlay: genereteGalleryOverlay,
     openPopup: openPopup,
