@@ -24,12 +24,11 @@ window.preview = (function () {
   function genereteGalleryOverlay(url, likes, comments) {
     galleryOverlay.querySelector('.gallery-overlay-image').src = url;
     galleryOverlay.querySelector('.likes-count').textContent = likes;
-    galleryOverlay.querySelector('.comments-count').textContent = comments;
+    galleryOverlay.querySelector('.comments-count').textContent = comments.length;
   }
 
   return {
     pictures: pictures,
-    galleryOverlay: galleryOverlay,
     closeButton: closeButton,
     genereteGalleryOverlay: genereteGalleryOverlay,
     openPopup: openPopup,

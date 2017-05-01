@@ -9,9 +9,6 @@ window.initializeFilters = (function () {
   var activeFilter;
 
   function setActiveFilter(name) {
-    if (activeFilter) {
-      activeFilter = '';
-    }
     activeFilter = name;
     return activeFilter;
   }
@@ -71,7 +68,6 @@ window.initializeFilters = (function () {
     resetAllSettings: resetAllSettings,
     hideScroller: hideScroller,
     showScroller: showScroller,
-    filterScroller: filterScroller,
     filterHandler: filterHandler,
     filterLineVal: filterLineVal,
     filterLine: filterLine,

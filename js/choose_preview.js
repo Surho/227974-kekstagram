@@ -15,6 +15,9 @@
 
   fileChooser.addEventListener('change', function () {
     var file = fileChooser.files[0];
+    if (!file) {
+      return;
+    }
     var fileName = file.name.toLowerCase();
     var check = FILE_TYPES.some(function (it) {
       return fileName.endsWith(it);
@@ -26,10 +29,9 @@
         preview.style.height = '587px';
       });
       reader.readAsDataURL(file);
-      reader.onloadend = function () {
+      reader.addEventListener('loadend', function (evt) {
         optimizeSize(preview);
-      };
+      });
     }
-
   });
 })();

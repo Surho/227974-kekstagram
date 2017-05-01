@@ -1,34 +1,34 @@
 'use strict';
-window.photoElement = (function () {
+(function () {
 
-  function generetePhotosTemplate(photo) {
+  function generetePhotosTemplate(photo, url, likes, comments) {
+    var preview = window.preview;
     var templatePhoto = document.querySelector('#picture-template').content;
     var photoTemplate = templatePhoto.cloneNode(true);
     photoTemplate.querySelector('img').src = photo.url;
     photoTemplate.querySelector('.picture-comments').textContent = photo.comments.length;
     photoTemplate.querySelector('.picture-likes').textContent = photo.likes;
+    photoTemplate.children[0].addEventListener('click', function (evt) {
+      evt.preventDefault();
+      preview.genereteGalleryOverlay(url, likes, comments);
+      preview.openPopup();
+    });
     return photoTemplate;
   }
 
   function renderPhotos(data) {
     var picturesList = document.querySelector('.pictures');
-    var fragment = document.createDocumentFragment();
     picturesList.innerHTML = '';
-    for (var i = 0; i < data.length; i++) {
-      fragment.appendChild(generetePhotosTemplate(data[i]));
-    }
-    picturesList.appendChild(fragment);
+    data.map(function (item) {
+      picturesList.appendChild(generetePhotosTemplate(item, item.url, item.likes, item.comments));
+    });
   }
 
   var photos = [];
   var debounce = window.debounce;
 
   function compare(a, b) {
-    var diff = b.comments.length - a.comments.length;
-    if (diff === 0) {
-      diff = b.likes - a.likes;
-    }
-    return diff;
+    return b.comments.length - a.comments.length || b.likes - a.likes;
   }
 
   function chaosSorting(a, b) {
@@ -77,7 +77,11 @@ window.photoElement = (function () {
   }
 
   function onError(error) {
+    if (document.querySelector('.error-message')) {
+      return;
+    }
     var errorWindow = document.createElement('div');
+    errorWindow.classList.add('error-message');
     errorWindow.innerHTML = '<p>' + error + '</p>' + '<img src="img/icon-warning.png">';
     errorWindow.style = 'z-index: 100; transform: translate(-50%, -30%); border:2px solid #F9DA28; padding:10px 20px; box-shadow:2px 2px 10px 0px rgba(249,218,40,0.2); text-align: center';
     errorWindow.style.position = 'absolute';
@@ -90,5 +94,6 @@ window.photoElement = (function () {
   var url = 'https://intensive-javascript-server-kjgvxfepjl.now.sh/kekstagram/data';
 
   window.load(url, onLoad, onError);
+
 })();
 
