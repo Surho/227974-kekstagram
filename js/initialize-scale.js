@@ -24,7 +24,7 @@
       evt.preventDefault();
       var target = evt.target;
       if (target === resizeDec) {
-        resize();
+        resize(false);
       }
       if (target === resizeInc) {
         resize(true);

@@ -126,10 +126,7 @@
   });
 
   var handler = filter.handler;
-  var startCords = {
-    x: null,
-    y: null
-  };
+  var startCords;
   function onMouseMove(moveEvt) {
     moveEvt.preventDefault();
     var handlerPosition = handler.offsetLeft;
