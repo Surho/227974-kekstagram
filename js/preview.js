@@ -1,7 +1,6 @@
 'use strict';
-window.preview = (function () {
-
-  var pictures = document.querySelector('.pictures');
+(function () {
+  // удалил var pictures
   var galleryOverlay = document.querySelector('.gallery-overlay');
   var closeButton = galleryOverlay.querySelector('.gallery-overlay-close');
 
@@ -27,8 +26,7 @@ window.preview = (function () {
     galleryOverlay.querySelector('.comments-count').textContent = comments.length;
   }
 
-  return {
-    pictures: pictures,
+  window.preview = {
     closeButton: closeButton,
     genereteGalleryOverlay: genereteGalleryOverlay,
     openPopup: openPopup,

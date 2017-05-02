@@ -1,14 +1,12 @@
 'use strict';
-window.initializeFilters = (function () {
-
+(function () {
   var uploadPreview = document.querySelector('.upload-form-preview');
-  var filterScroller = document.querySelector('.upload-filter-level');
-  var filterHandler = document.querySelector('.upload-filter-level-pin');
-  var filterLineVal = document.querySelector('.upload-filter-level-val');
-  var filterLine = document.querySelector('.upload-filter-level-line');
+  var scroller = document.querySelector('.upload-filter-level');
+  var handler = document.querySelector('.upload-filter-level-pin');
+  var lineVal = document.querySelector('.upload-filter-level-val');
   var activeFilter;
 
-  function setActiveFilter(name) {
+  function setActive(name) {
     activeFilter = name;
     return activeFilter;
   }
@@ -47,30 +45,29 @@ window.initializeFilters = (function () {
   }
 
   function hideScroller() {
-    filterScroller.style.display = 'none';
+    scroller.style.display = 'none';
   }
 
   function showScroller() {
-    filterScroller.style.display = '';
+    scroller.style.display = '';
   }
 
   function resetAllSettings() {
     var resizeValue = document.querySelector('.upload-resize-controls-value');
-    filterHandler.style.left = 90 + 'px';
-    filterLineVal.style.width = 20 + '%';
+    handler.style.left = 90 + 'px';
+    lineVal.style.width = 20 + '%';
     resizeValue.setAttribute('value', 100 + '%');
     uploadPreview.style.transform = 'scale(' + 1 + ')';
     uploadPreview.style.cssText = '';
   }
 
-  return {
-    activateFilter: activate,
+  window.filter = {
+    activate: activate,
     resetAllSettings: resetAllSettings,
     hideScroller: hideScroller,
     showScroller: showScroller,
-    filterHandler: filterHandler,
-    filterLineVal: filterLineVal,
-    filterLine: filterLine,
-    setActiveFilter: setActiveFilter
+    handler: handler,
+    lineVal: lineVal,
+    setActive: setActive
   };
 })();

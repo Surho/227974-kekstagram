@@ -5,7 +5,7 @@
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadCancel = uploadOverlay.querySelector('.upload-form-cancel');
   var uploadPreview = document.querySelector('.upload-form-preview');
-  var initializeFilters = window.initializeFilters;
+  var filter = window.filter;
   var initializeScale = window.initializeScale;
 
   function onUploadEscPress(evt) {
@@ -64,10 +64,10 @@
 
   var uploadFilterControls = document.querySelector('.upload-filter-controls');
 
-  initializeFilters.hideScroller();
+  filter.hideScroller();
 
   function applyFilter(filterObject) {
-    var filterPinPosition = initializeFilters.filterHandler.offsetLeft;
+    var filterPinPosition = filter.handler.offsetLeft;
     uploadPreview.style.filter = filterObject.cssValue + '(' + (filterPinPosition * filterObject.scale) + filterObject.division + ')';
   }
 
@@ -76,16 +76,16 @@
     while (target !== uploadFilterControls) {
       if (target.value === 'none') {
         uploadPreview.style = '';
-        initializeFilters.setActiveFilter(target.value);
-        initializeFilters.hideScroller();
-        initializeFilters.resetAllSettings();
+        filter.setActive(target.value);
+        filter.hideScroller();
+        filter.resetAllSettings();
         return;
       }
       if (target.value) {
-        initializeFilters.setActiveFilter(target.value);
-        initializeFilters.showScroller();
-        initializeFilters.resetAllSettings();
-        initializeFilters.activateFilter(applyFilter);
+        filter.setActive(target.value);
+        filter.showScroller();
+        filter.resetAllSettings();
+        filter.activate(applyFilter);
       }
       target = target.parentNode;
     }
@@ -103,8 +103,8 @@
   function resetValidForm() {
     var myForm = uploadOverlay.querySelector('#upload-filter');
     myForm.reset();
-    initializeFilters.resetAllSettings();
-    initializeFilters.hideScroller();
+    filter.resetAllSettings();
+    filter.hideScroller();
   }
 
   function highlightErrorForm() {
@@ -126,8 +126,8 @@
     }
   });
 
-  initializeFilters.filterHandler.addEventListener('mousedown', function (evt) {
-    var filterHandler = initializeFilters.filterHandler;
+  filter.handler.addEventListener('mousedown', function (evt) {
+    var handler = filter.handler;
     evt.preventDefault();
 
     var startCords = {
@@ -148,18 +148,18 @@
         y: moveEvt.clientY
       };
 
-      if (filterHandler.offsetLeft <= 0) {
-        filterHandler.style.left = filterHandler.offsetLeft + 1 + 'px';
+      if (handler.offsetLeft <= 0) {
+        handler.style.left = handler.offsetLeft + 1 + 'px';
         return;
       }
-      if (filterHandler.offsetLeft >= 450) {
-        filterHandler.style.left = filterHandler.offsetLeft - 1 + 'px';
+      if (handler.offsetLeft >= 450) {
+        handler.style.left = handler.offsetLeft - 1 + 'px';
         return;
       }
 
-      initializeFilters.filterHandler.style.left = (filterHandler.offsetLeft - shift.x) + 'px';
-      initializeFilters.filterLineVal.style.width = (filterHandler.offsetLeft * (100 / 450)) + '%';
-      initializeFilters.activateFilter(applyFilter);
+      filter.handler.style.left = (handler.offsetLeft - shift.x) + 'px';
+      filter.lineVal.style.width = (handler.offsetLeft * (100 / 450)) + '%';
+      filter.activate(applyFilter);
     }
 
     function onMouseUp(upEvt) {
