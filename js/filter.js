@@ -4,6 +4,8 @@
   var scroller = document.querySelector('.upload-filter-level');
   var handler = document.querySelector('.upload-filter-level-pin');
   var lineVal = document.querySelector('.upload-filter-level-val');
+  var resizeValue = document.querySelector('.upload-resize-controls-value');
+  var constants = window.constants;
   var activeFilter;
 
   function setActive(name) {
@@ -14,27 +16,27 @@
   function activate(applyFilter) {
     var filtersInfo = {
       chrome: {
-        scale: 1 / 450,
+        scale: constants.maxChromeValue / constants.scrollerLineWidth,
         cssValue: 'grayscale',
         division: ''
       },
       sepia: {
-        scale: 1 / 450,
+        scale: constants.maxSepiaValue / constants.scrollerLineWidth,
         cssValue: 'sepia',
         division: ''
       },
       marvin: {
-        scale: 100 / 450,
+        scale: constants.maxMarvinValue / constants.scrollerLineWidth,
         cssValue: 'invert',
         division: '%'
       },
       phobos: {
-        scale: 3 / 450,
+        scale: constants.maxPhobosValue / constants.scrollerLineWidth,
         cssValue: 'blur',
         division: 'px'
       },
       heat: {
-        scale: 3 / 450,
+        scale: constants.maxHeatValue / constants.scrollerLineWidth,
         cssValue: 'brightness',
         division: ''
       }
@@ -53,11 +55,10 @@
   }
 
   function resetAllSettings() {
-    var resizeValue = document.querySelector('.upload-resize-controls-value');
-    handler.style.left = 90 + 'px';
-    lineVal.style.width = 20 + '%';
-    resizeValue.setAttribute('value', 100 + '%');
-    uploadPreview.style.transform = 'scale(' + 1 + ')';
+    handler.style.left = constants.handlerDefaultPosition;
+    lineVal.style.width = constants.lineValDefaultPosition;
+    resizeValue.setAttribute('value', constants.resizeDefaultValue);
+    uploadPreview.style.transform = constants.previewDefaultScale;
     uploadPreview.style.cssText = '';
   }
 

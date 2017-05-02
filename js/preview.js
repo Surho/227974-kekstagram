@@ -1,11 +1,14 @@
 'use strict';
 (function () {
-  // удалил var pictures
   var galleryOverlay = document.querySelector('.gallery-overlay');
   var closeButton = galleryOverlay.querySelector('.gallery-overlay-close');
+  var constants = window.constants;
+  var overlayImage = galleryOverlay.querySelector('.gallery-overlay-image');
+  var overlayLikes = galleryOverlay.querySelector('.likes-count');
+  var overlayComments = galleryOverlay.querySelector('.comments-count');
 
   function onPopupEscPress(evtPress) {
-    if (evtPress.keyCode === 27) {
+    if (evtPress.keyCode === constants.escCode) {
       closePopup();
     }
   }
@@ -21,9 +24,9 @@
   }
 
   function genereteGalleryOverlay(url, likes, comments) {
-    galleryOverlay.querySelector('.gallery-overlay-image').src = url;
-    galleryOverlay.querySelector('.likes-count').textContent = likes;
-    galleryOverlay.querySelector('.comments-count').textContent = comments.length;
+    overlayImage.src = url;
+    overlayLikes.textContent = likes;
+    overlayComments.textContent = comments.length;
   }
 
   window.preview = {

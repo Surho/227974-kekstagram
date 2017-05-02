@@ -1,6 +1,7 @@
 'use strict';
 (function () {
   window.load = function (url, onLoad, onError) {
+    var interval = 10000;
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -35,7 +36,7 @@
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
-    xhr.timeout = 10000;
+    xhr.timeout = interval;
     xhr.open('GET', url);
     xhr.send();
   };

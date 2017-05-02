@@ -5,40 +5,32 @@
     var resizeDec = resizeControls.querySelector('.upload-resize-controls-button-dec');
     var resizeInc = resizeControls.querySelector('.upload-resize-controls-button-inc');
     var resizeValue = resizeControls.querySelector('.upload-resize-controls-value');
+    var ZOOM_STEP = 25;
+    var MAX_ZOOM = 100;
 
-    function resize(step, max, bigger) {
+    function resize(bigger) {
       var currentValue = parseInt(resizeValue.value, 10);
-      function resizeBigger() {
-        if (currentValue < max) {
-          currentValue += step;
-          adjustScale(currentValue);
-          resizeValue.setAttribute('value', currentValue + '%');
-        }
+      if (bigger && currentValue < MAX_ZOOM) {
+        currentValue += ZOOM_STEP;
       }
-      function resizeSmaller() {
-        if (currentValue > step) {
-          currentValue -= step;
-          adjustScale(currentValue);
-          resizeValue.setAttribute('value', currentValue + '%');
-        }
+      if (!bigger && currentValue > ZOOM_STEP) {
+        currentValue -= ZOOM_STEP;
       }
-      if (bigger) {
-        resizeBigger();
-      } else {
-        resizeSmaller();
-      }
+      adjustScale(currentValue);
+      resizeValue.setAttribute('value', currentValue + '%');
     }
 
     scaleElement.addEventListener('click', function (evt) {
       evt.preventDefault();
       var target = evt.target;
       if (target === resizeDec) {
-        resize(25, 100);
+        resize();
       }
       if (target === resizeInc) {
-        resize(25, 100, true);
+        resize(true);
       }
       target = target.parentNode;
     });
   };
 })();
+
