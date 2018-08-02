@@ -5,6 +5,7 @@
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
     xhr.addEventListener('load', function () {
       var error;
