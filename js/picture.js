@@ -19,7 +19,7 @@
   function renderPhotos(data) {
     var picturesList = document.querySelector('.pictures');
     picturesList.innerHTML = '';
-    data.forEach(function (item) { // заменил на forEach
+    data.forEach(function (item) {
       picturesList.appendChild(generetePhotosTemplate(item, item.url, item.likes, item.comments));
     });
   }

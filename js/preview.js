@@ -1,6 +1,5 @@
 'use strict';
 (function () {
-  // удалил var pictures
   var galleryOverlay = document.querySelector('.gallery-overlay');
   var closeButton = galleryOverlay.querySelector('.gallery-overlay-close');
 

@@ -8,7 +8,8 @@
     var width = parseInt(picture.width, 10);
     var height = parseInt(picture.height, 10);
     if (width > height) {
-      var widthShift = (width - 587) / 2;
+      var pictureDefaultWidth = 587;
+      var widthShift = (width - pictureDefaultWidth) / 2;
       picture.style.transform = 'translateX(-' + widthShift + 'px)';
     }
   }

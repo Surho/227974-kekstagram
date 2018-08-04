@@ -6,6 +6,7 @@
   var uploadCancel = uploadOverlay.querySelector('.upload-form-cancel');
   var uploadPreview = document.querySelector('.upload-form-preview');
   var filter = window.filter;
+  var constants = window.constants;
   var initializeScale = window.initializeScale;
 
   function onUploadEscPress(evt) {
@@ -137,28 +138,31 @@
 
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
+      var handlerPosition = handler.offsetLeft;
+      var clientX = moveEvt.clientX;
+      var clientY = moveEvt.clientY;
 
       var shift = {
-        x: startCords.x - moveEvt.clientX,
-        y: startCords.y - moveEvt.clientY
+        x: startCords.x - clientX,
+        y: startCords.y - clientY
       };
 
       startCords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
+        x: clientX,
+        y: clientY
       };
 
-      if (handler.offsetLeft <= 0) {
-        handler.style.left = handler.offsetLeft + 1 + 'px';
+      if (handlerPosition <= 0) {
+        handler.style.left = ++handlerPosition + 'px';
         return;
       }
-      if (handler.offsetLeft >= 450) {
-        handler.style.left = handler.offsetLeft - 1 + 'px';
+      if (handlerPosition >= constants.scrollerLineWidth) {
+        handler.style.left = --handlerPosition + 'px';
         return;
       }
 
-      filter.handler.style.left = (handler.offsetLeft - shift.x) + 'px';
-      filter.lineVal.style.width = (handler.offsetLeft * (100 / 450)) + '%';
+      filter.handler.style.left = (handlerPosition - shift.x) + 'px';
+      filter.lineVal.style.width = (handlerPosition * (constants.moveStep)) + '%';
       filter.activate(applyFilter);
     }
 
