@@ -91,7 +91,7 @@
     document.body.appendChild(errorWindow);
   }
 
-  var url = 'https://intensive-javascript-server-kjgvxfepjl.now.sh/kekstagram/data';
+  var url = 'https://surho.github.io/227974-kekstagram/api/pictures.json';
 
   window.load(url, onLoad, onError);
 
