@@ -1,11 +1,11 @@
 [
   {
-    "url": "../photos/1.jpg",
+    "url": "./photos/1.jpg",
     "likes": 12,
     "comments": "random comment"
   },
   {
-    "url": "../photos/2.jpg",
+    "url": "./photos/2.jpg",
     "likes": 12,
     "comments": "random comment"
   },
