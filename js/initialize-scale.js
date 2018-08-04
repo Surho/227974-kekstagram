@@ -24,7 +24,11 @@
       evt.preventDefault();
       var target = evt.target;
       if (target === resizeDec) {
+<<<<<<< HEAD
         resize();
+=======
+        resize(false);
+>>>>>>> c10461666955899234cc04ea74b89b58a8b1204c
       }
       if (target === resizeInc) {
         resize(true);

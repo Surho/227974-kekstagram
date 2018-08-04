@@ -13,6 +13,10 @@
     maxMarvinValue: 100,
     maxPhobosValue: 3,
     maxHeatValue: 3,
+<<<<<<< HEAD
     moveStep: 100 / 450
+=======
+    moveScaleStep: 100 / 450
+>>>>>>> c10461666955899234cc04ea74b89b58a8b1204c
   };
 })();

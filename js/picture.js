@@ -1,9 +1,10 @@
 'use strict';
 (function () {
+  var preview = window.preview;
+  var templatePhoto = document.querySelector('#picture-template').content;
+  var picturesList = document.querySelector('.pictures');
 
   function generetePhotosTemplate(photo, url, likes, comments) {
-    var preview = window.preview;
-    var templatePhoto = document.querySelector('#picture-template').content;
     var photoTemplate = templatePhoto.cloneNode(true);
     photoTemplate.querySelector('img').src = photo.url;
     photoTemplate.querySelector('.picture-comments').textContent = photo.comments.length;
@@ -17,7 +18,6 @@
   }
 
   function renderPhotos(data) {
-    var picturesList = document.querySelector('.pictures');
     picturesList.innerHTML = '';
     data.forEach(function (item) {
       picturesList.appendChild(generetePhotosTemplate(item, item.url, item.likes, item.comments));
